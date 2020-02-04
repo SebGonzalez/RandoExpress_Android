@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randoexpress.R
 import kotlinx.android.synthetic.main.rando_item.*
@@ -24,8 +25,10 @@ class RandoListAdapter(val data : ArrayList<String>) : RecyclerView.Adapter<Rand
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item: String = data[position]
+        val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et. Congue nisi vitae suscipit tellus mauris a diam maecenas."
         holder.title.text = item
-        holder.description.text = item
+        holder.description.text = description
+        holder.itemView.setOnClickListener { view ->  Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_detailsFragment) }
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

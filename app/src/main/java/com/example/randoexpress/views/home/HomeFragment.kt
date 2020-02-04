@@ -28,18 +28,18 @@ class HomeFragment : Fragment() {
     }
 
     fun mockData(){
-        data.add("First rando")
-        data.add("Second rando")
-        data.add("Third rando")
-        data.add("Another rando")
-        data.add("First rando")
-        data.add("Second rando")
-        data.add("Third rando")
-        data.add("Another rando")
-        data.add("First rando")
-        data.add("Second rando")
-        data.add("Third rando")
-        data.add("Another rando")
+        data.add("Walk in the woods")
+        data.add("A stroll through the hills of Allauch")
+        data.add("Walk in the woods")
+        data.add("Another walk")
+        data.add("Walk in the woods")
+        data.add("A stroll through the hills of Allauch")
+        data.add("Walk in the woods")
+        data.add("Another walk")
+        data.add("Walk in the woods")
+        data.add("A stroll through the hills of Allauch")
+        data.add("Walk in the woods")
+        data.add("Another walk")
     }
 
 
