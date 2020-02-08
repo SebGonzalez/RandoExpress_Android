@@ -13,7 +13,7 @@
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/map_snippet" />
+        android:src="@drawable/map_snippet_big" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
