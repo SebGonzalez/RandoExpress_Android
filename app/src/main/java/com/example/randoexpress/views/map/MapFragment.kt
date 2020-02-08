@@ -10,10 +10,32 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.randoexpress.R
 import com.example.randoexpress.viewmodels.RandoViewModel
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import kotlinx.android.synthetic.main.fragment_map.*
 
-class MapFragment : Fragment() {
+class MapFragment : Fragment(), OnMapReadyCallback {
+
 
     private lateinit var mapViewModel: RandoViewModel
+    private lateinit var googleMap: GoogleMap
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        map_view.onCreate(savedInstanceState)
+        map_view.onResume()
+
+        map_view.getMapAsync(this)
+    }
+
+    override fun onMapReady(map: GoogleMap?) {
+        map?.let {
+            googleMap = it
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +49,7 @@ class MapFragment : Fragment() {
         mapViewModel.text.observe(this, Observer {
             textView.text = it+" Map Fragment"
         })
-        return root
+         return root
+
     }
 }
