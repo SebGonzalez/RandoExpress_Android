@@ -26,6 +26,8 @@ class HomeFragment : Fragment() {
         randoViewModel = ViewModelProviders.of(this).get(RandoViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val service: RandoService = RetrofitInstance.getRetrofitInstance()!!.create(RandoService::class.java)
+        val recyclerView : RecyclerView = root.findViewById(R.id.rando_list)
+        recyclerView.adapter = RandoListAdapter(ArrayList())
         val call: Call<ArrayList<Model.Rando>> = service.getRandos()
         call.enqueue(object : Callback<ArrayList<Model.Rando>> {
             override fun onResponse(
@@ -35,7 +37,6 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful()) {
                     val groups: ArrayList<Model.Rando> = response.body()!!
                     val adapter = RandoListAdapter(groups)
-                    val recyclerView : RecyclerView = root.findViewById(R.id.rando_list)
                     recyclerView.adapter = adapter
                 } else {
                     println(response.errorBody())
@@ -51,21 +52,6 @@ class HomeFragment : Fragment() {
 //        val recyclerView : RecyclerView = root.findViewById(R.id.rando_list)
 //        recyclerView.adapter = adapter
         return root
-    }
-
-    fun mockData(){
-        data.add("Walk in the woods")
-        data.add("A stroll through the hills of Allauch")
-        data.add("Walk in the woods")
-        data.add("Another walk")
-        data.add("Walk in the woods")
-        data.add("A stroll through the hills of Allauch")
-        data.add("Walk in the woods")
-        data.add("Another walk")
-        data.add("Walk in the woods")
-        data.add("A stroll through the hills of Allauch")
-        data.add("Walk in the woods")
-        data.add("Another walk")
     }
 
 
