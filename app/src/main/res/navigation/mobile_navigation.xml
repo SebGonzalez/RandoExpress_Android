@@ -29,10 +29,27 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.randoexpress.views.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.randoexpress.views.home.DetailsFragment"
         android:label="Details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.randoexpress.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.randoexpress.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
 </navigation>

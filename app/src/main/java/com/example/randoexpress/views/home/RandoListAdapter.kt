@@ -29,7 +29,10 @@ class RandoListAdapter(val data : ArrayList<Model.Rando>) : RecyclerView.Adapter
         val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et. Congue nisi vitae suscipit tellus mauris a diam maecenas."
         holder.title.text = item
         holder.description.text = data[position].description
-        holder.itemView.setOnClickListener { view ->  Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_detailsFragment) }
+        holder.itemView.setOnClickListener { view ->
+            Navigation
+                .findNavController(view)
+                .navigate(R.id.action_navigation_home_to_detailsFragment) }
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
