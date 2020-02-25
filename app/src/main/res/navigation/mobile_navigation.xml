@@ -44,12 +44,12 @@
         tools:layout="@layout/fragment_details" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.randoexpress.LoginFragment"
+        android:name="com.example.randoexpress.views.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.randoexpress.SignInFragment"
+        android:name="com.example.randoexpress.views.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" />
 </navigation>

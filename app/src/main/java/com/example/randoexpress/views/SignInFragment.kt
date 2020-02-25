@@ -1,4 +1,4 @@
-package com.example.randoexpress
+package com.example.randoexpress.views
 
 
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.randoexpress.R
 
 /**
  * A simple [Fragment] subclass.
