@@ -1,9 +1,8 @@
 package com.example.randoexpress.model
 
-import retrofit2.http.Query
 
 object Model {
-    data class Rando(val ville: String,
+    data class Rando(val city: String,
                      val name: String,
                      val description: String,
                      val id: Int,

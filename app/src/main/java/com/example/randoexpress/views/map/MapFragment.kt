@@ -9,17 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.randoexpress.R
-import com.example.randoexpress.viewmodels.RandoViewModel
+import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
 
-    private lateinit var mapViewModel: RandoViewModel
     private lateinit var googleMap: GoogleMap
+    private lateinit var randoViewModel: RandoListViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -42,14 +41,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mapViewModel =
-            ViewModelProviders.of(this).get(RandoViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_map, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        mapViewModel.text.observe(this, Observer {
-            textView.text = it+" Map Fragment"
+        randoViewModel = ViewModelProviders.of(requireActivity()).get(RandoListViewModel::class.java)
+        randoViewModel.randoList.observe(viewLifecycleOwner, Observer { list ->
+            // list is an ArrayList of Model.Rando
+            // You can display randos on map from here
         })
-         return root
-
+        return root
     }
 }
