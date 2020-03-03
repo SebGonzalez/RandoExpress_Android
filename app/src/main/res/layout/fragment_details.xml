@@ -60,7 +60,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/details_title" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/rando_item_location_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
@@ -71,7 +71,7 @@
                 app:srcCompat="@drawable/ic_location_on_primary_dark_16dp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/rando_item_location_city"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -82,12 +82,12 @@
                 android:text="Vallon de l'Eveque, Marseille"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 app:layout_constraintBottom_toTopOf="@+id/button"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/rando_item_attending_icon"
+                app:layout_constraintStart_toEndOf="@+id/rando_item_location_icon"
                 app:layout_constraintTop_toBottomOf="@+id/details_description" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/rando_item_attending_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -111,12 +111,13 @@
 
             <Button
                 android:id="@+id/button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
+                android:textColor="@color/colorAccent"
                 android:text="JOIN"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

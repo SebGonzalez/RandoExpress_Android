@@ -34,7 +34,7 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.rando_title)
-        val description: TextView = itemView.findViewById(R.id.rando_description);
+        val description: TextView = itemView.findViewById(R.id.rando_item_description);
 
     }
 }

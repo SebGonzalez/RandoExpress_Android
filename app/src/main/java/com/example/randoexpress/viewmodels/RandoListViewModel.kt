@@ -1,5 +1,6 @@
 package com.example.randoexpress.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -14,6 +15,7 @@ class RandoListViewModel : ViewModel(){
 
     val getRandoList = liveData(Dispatchers.IO) {
         val randoList = repository.getRandoList()
+        Log.i("====>getRandoList", "FETCHING DATA")
         emit(randoList)
     }
 }
