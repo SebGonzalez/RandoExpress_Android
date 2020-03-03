@@ -35,16 +35,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_map, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_map, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
             // list is an ArrayList of Model.Rando
             // You can display randos on map from here
         })
-        return root
     }
 }

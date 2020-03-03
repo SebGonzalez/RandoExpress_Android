@@ -2,32 +2,33 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/search_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_margin="16dp"
         android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
     <EditText
         android:id="@+id/search_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="12"
-        android:maxEms="12"
-        android:visibility="gone"
-        android:layout_margin="16dp"
-        android:layout_gravity="center|top"
         android:background="@drawable/item_rounded_bg_white"
-        android:elevation="10dp"
-        android:inputType="textPersonName"
-        android:text="Enter city name..." />
+        android:elevation="6dp"
+        android:layout_marginEnd="96dp"
+        android:ems="10"
+        app:layout_anchor="@id/search_fab"
+        app:layout_anchorGravity="center_vertical"
+        android:inputType="textPostalAddress"
+        android:maxEms="10"
+        android:hint="Enter city name..."
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rando_list"
@@ -42,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/rando_item" >
+        tools:listitem="@layout/rando_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 

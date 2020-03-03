@@ -21,10 +21,14 @@ class HomeFragment : Fragment() {
     private val randoViewModel: RandoListViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val recyclerView : RecyclerView = root.findViewById(R.id.rando_list)
-        val searchFab: FloatingActionButton = root.findViewById(R.id.search_fab)
-        val searchBox: EditText = root.findViewById(R.id.search_box)
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val recyclerView : RecyclerView = view.findViewById(R.id.rando_list)
+        val searchFab: FloatingActionButton = view.findViewById(R.id.search_fab)
+        val searchBox: EditText = view.findViewById(R.id.search_box)
         searchFab.setOnClickListener {
             if(searchBox.isGone)
                 searchBox.visibility = View.VISIBLE
@@ -36,8 +40,5 @@ class HomeFragment : Fragment() {
             val adapter = RandoListAdapter(list)
             recyclerView.adapter = adapter
         })
-        return root
     }
-
-
 }
