@@ -15,15 +15,11 @@ import com.example.randoexpress.viewmodels.DashboardViewModel
 
 class DashboardFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val logInButton: Button = root.findViewById(R.id.login_button_temp)
         val signInButton: Button = root.findViewById(R.id.signin_button_temp)
@@ -37,10 +33,6 @@ class DashboardFragment : Fragment() {
                 .findNavController(view)
                 .navigate(R.id.action_navigation_dashboard_to_signInFragment)
         }
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        dashboardViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
         return root
     }
 }

@@ -12,7 +12,6 @@ import com.example.randoexpress.model.Model
 class RandoListAdapter(val data: ArrayList<Model.Rando>) :
     RecyclerView.Adapter<RandoListAdapter.MyViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.rando_item, parent, false)
