@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface RandoService {
     @GET("/bins/tbx60")
-    fun getRandos(): Call<ArrayList<Model.Rando>>
+    suspend fun getRandos(): ArrayList<Model.Rando>
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.randoexpress.R
@@ -18,14 +19,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
 
     private lateinit var googleMap: GoogleMap
-    private lateinit var randoViewModel: RandoListViewModel
+    private val randoViewModel: RandoListViewModel by activityViewModels()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         map_view.onCreate(savedInstanceState)
         map_view.onResume()
-
         map_view.getMapAsync(this)
     }
 
@@ -35,15 +34,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_map, container, false)
-        randoViewModel = ViewModelProviders.of(requireActivity()).get(RandoListViewModel::class.java)
-        randoViewModel.randoList.observe(viewLifecycleOwner, Observer { list ->
+        randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
             // list is an ArrayList of Model.Rando
             // You can display randos on map from here
         })

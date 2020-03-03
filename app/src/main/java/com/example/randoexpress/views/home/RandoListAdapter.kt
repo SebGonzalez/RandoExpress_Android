@@ -27,7 +27,6 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>) :
         holder.title.text = data[position].name
         holder.description.text = data[position].description
         holder.itemView.setOnClickListener { view ->
-
             Navigation
                 .findNavController(view)
                 .navigate(R.id.action_navigation_home_to_detailsFragment)
