@@ -1,5 +1,6 @@
 package com.example.randoexpress.views.home
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.randoexpress.R
 import com.example.randoexpress.model.Model
 
+
 class RandoListAdapter(val data: ArrayList<Model.Rando>) :
     RecyclerView.Adapter<RandoListAdapter.MyViewHolder>() {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,10 +29,12 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.title.text = data[position].name
         holder.description.text = data[position].description
+        val bundle = Bundle()
+        bundle.putInt("randoId", position)
         holder.itemView.setOnClickListener { view ->
             Navigation
                 .findNavController(view)
-                .navigate(R.id.action_navigation_home_to_detailsFragment)
+                .navigate(R.id.action_navigation_home_to_detailsFragment, bundle)
         }
     }
 

@@ -18,7 +18,7 @@ import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment() {
-    private val randoViewModel: RandoListViewModel by viewModels()
+    private val randoViewModel: RandoListViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
