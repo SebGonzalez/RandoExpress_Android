@@ -11,10 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.randoexpress.R
+import com.example.randoexpress.model.Model
 import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -38,6 +41,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
                 // list is an ArrayList of Model.Rando
                 // You can display randos on map from here
+                list.forEach { rando: Model.Rando ->
+                    val location = LatLng(rando.latitude.toDouble(), rando.longitude.toDouble())
+                    googleMap.addMarker(MarkerOptions()
+                            .position(location)
+                            .title(rando.name))
+                }
             })
         }
     }
