@@ -14,6 +14,7 @@ import com.example.randoexpress.R
 import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.MapStyleOptions
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -32,6 +33,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(map: GoogleMap?) {
         map?.let {
             googleMap = it
+            googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style));
         }
     }
 
