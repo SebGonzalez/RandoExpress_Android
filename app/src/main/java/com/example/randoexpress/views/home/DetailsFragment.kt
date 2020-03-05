@@ -11,15 +11,27 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.randoexpress.R
 import com.example.randoexpress.viewmodels.RandoListViewModel
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import kotlinx.android.synthetic.main.fragment_details.*
+import kotlinx.android.synthetic.main.fragment_map.*
 
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(), OnMapReadyCallback {
 
+    private lateinit var googleMap: GoogleMap
     private val randoViewModel: RandoListViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        details_map_view.onCreate(savedInstanceState)
+        details_map_view.onResume()
+        details_map_view.getMapAsync(this)
     }
 
     override fun onCreateView(
@@ -37,5 +49,11 @@ class DetailsFragment : Fragment() {
         randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
             Log.i("=====>Details", "randoId"+list.get(randoId))
         })
+    }
+
+    override fun onMapReady(map: GoogleMap?) {
+        map?.let {
+            googleMap = it
+        }
     }
 }

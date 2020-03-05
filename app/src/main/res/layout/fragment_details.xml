@@ -6,20 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".views.home.DetailsFragment">
 
-    <ImageView
-        android:id="@+id/details_background"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/details_map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="false"
-        android:cropToPadding="false"
-        android:scaleType="centerCrop"
-        android:src="@drawable/map_snippet_big" />
+        android:layout_height="match_parent" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="32dp"
+        android:layout_margin="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="6dp">
 
@@ -28,15 +24,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/details_title"
+                android:id="@+id/rando_details_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="4dp"
                 android:text="Walk in the woods"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,84 +39,106 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/details_description"
+                android:id="@+id/rando_details_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="6"
-                android:paddingStart="8dp"
+                android:paddingStart="16dp"
                 android:paddingTop="4dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et. Congue nisi vitae suscipit tellus mauris a diam maecenas."
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/details_title" />
+                app:layout_constraintTop_toBottomOf="@+id/rando_details_title" />
 
             <ImageView
-                android:id="@+id/rando_item_location_icon"
+                android:id="@+id/rando_details_location_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
+                android:paddingStart="16dp"
                 android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/rando_details_join_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/details_description"
+                app:layout_constraintTop_toBottomOf="@+id/rando_details_description"
                 app:srcCompat="@drawable/ic_location_on_primary_dark_16dp" />
 
             <TextView
-                android:id="@+id/rando_item_location_city"
-                android:layout_width="0dp"
+                android:id="@+id/rando_details_location_value"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:paddingTop="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
-                android:text="Vallon de l'Eveque, Marseille"
+                android:text="Marseille"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                app:layout_constraintBottom_toTopOf="@+id/button"
-                app:layout_constraintEnd_toStartOf="@+id/rando_item_attending_icon"
-                app:layout_constraintStart_toEndOf="@+id/rando_item_location_icon"
-                app:layout_constraintTop_toBottomOf="@+id/details_description" />
+                app:layout_constraintBottom_toTopOf="@+id/rando_details_join_button"
+                app:layout_constraintStart_toEndOf="@+id/rando_details_location_icon"
+                app:layout_constraintTop_toBottomOf="@+id/rando_details_description" />
 
             <ImageView
                 android:id="@+id/rando_item_attending_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/button"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/details_description"
+                app:layout_constraintBottom_toTopOf="@+id/rando_details_join_button"
+                app:layout_constraintStart_toEndOf="@+id/rando_details_location_value"
+                app:layout_constraintTop_toBottomOf="@+id/rando_details_description"
                 app:srcCompat="@drawable/ic_people_primary_dark_16dp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/rando_details_attending_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
-                android:text="9 people attending"
+                android:text="9"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                app:layout_constraintBottom_toTopOf="@+id/button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/details_description" />
+                app:layout_constraintBottom_toTopOf="@+id/rando_details_join_button"
+                app:layout_constraintStart_toEndOf="@+id/rando_item_attending_icon"
+                app:layout_constraintTop_toBottomOf="@+id/rando_details_description" />
+
+            <ImageView
+                android:id="@+id/rando_details_time_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@drawable/ic_access_time_orange_16dp"
+                app:layout_constraintStart_toEndOf="@+id/rando_details_attending_value"
+                app:layout_constraintTop_toBottomOf="@+id/rando_details_description" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/rando_details_join_button"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="@color/colorAccent"
                 android:text="JOIN"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:text="20/03/2020 22:30"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/rando_details_time_icon"
+                app:layout_constraintTop_toBottomOf="@+id/rando_details_description" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
