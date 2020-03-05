@@ -65,14 +65,14 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         val randoTitle: TextView = view.findViewById(R.id.rando_details_title)
         val randoHost: TextView = view.findViewById(R.id.rando_details_host_name_value)
         val randoDescription: TextView = view.findViewById(R.id.rando_details_description)
-        val randoLocation: TextView = view.findViewById(R.id.rando_details_location_value)
-        val randoAttendeeNumber: TextView = view.findViewById(R.id.rando_details_attending_value)
+        val randoLocation: TextView = view.findViewById(R.id.rando_item_location_value)
+        val randoAttendeesNumber: TextView = view.findViewById(R.id.rando_details_attending_value)
         val randoDateTime: TextView = view.findViewById(R.id.rando_details_time_value)
         randoTitle.text = rando.name
         randoHost.text = rando.owner.firstName
         randoDescription.text = rando.description
         randoLocation.text = rando.ville
-        randoAttendeeNumber.text = rando.persons.size.toString()
+        randoAttendeesNumber.text = rando.persons.size.toString()
         randoDateTime.text = "${rando.heureDepart} ${rando.dateDepart}"
     }
 

@@ -65,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/rando_item_hosted_message" />
 
         <ImageView
-            android:id="@+id/rando_details_location_icon"
+            android:id="@+id/rando_item_location_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
@@ -76,13 +76,13 @@
             app:srcCompat="@drawable/ic_location_on_primary_dark_16dp" />
 
         <TextView
-            android:id="@+id/rando_details_location_value"
+            android:id="@+id/rando_item_location_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Marseille"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rando_details_location_icon"
+            app:layout_constraintStart_toEndOf="@+id/rando_item_location_icon"
             app:layout_constraintTop_toBottomOf="@+id/rando_item_description" />
 
         <ImageView
@@ -92,7 +92,7 @@
             android:padding="8dp"
             android:paddingStart="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rando_details_location_value"
+            app:layout_constraintStart_toEndOf="@+id/rando_item_location_value"
             app:layout_constraintTop_toBottomOf="@+id/rando_item_description"
             app:srcCompat="@drawable/ic_people_primary_dark_16dp" />
 
@@ -144,7 +144,7 @@
             app:srcCompat="@drawable/ic_access_time_orange_16dp" />
 
         <TextView
-            android:id="@+id/rando_item_time_icon_value"
+            android:id="@+id/rando_item_time_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"

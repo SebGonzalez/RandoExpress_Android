@@ -29,6 +29,10 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.title.text = data[position].name
         holder.description.text = data[position].description
+        holder.hostName.text = data[position].owner.firstName
+        holder.attendees.text = data[position].persons.size.toString()
+        holder.location.text = data[position].ville
+        holder.dateTime.text = "${data[position].heureDepart} ${data[position].dateDepart}"
         val bundle = Bundle()
         bundle.putInt("randoId", position)
         holder.itemView.setOnClickListener { view ->
@@ -40,7 +44,10 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.rando_title)
-        val description: TextView = itemView.findViewById(R.id.rando_item_description);
-
+        val description: TextView = itemView.findViewById(R.id.rando_item_description)
+        val hostName: TextView = itemView.findViewById(R.id.rando_item_host_name_value)
+        val location: TextView = itemView.findViewById(R.id.rando_item_location_value)
+        val attendees: TextView = itemView.findViewById(R.id.rando_item_attending_number)
+        val dateTime: TextView = itemView.findViewById(R.id.rando_item_time_value)
     }
 }

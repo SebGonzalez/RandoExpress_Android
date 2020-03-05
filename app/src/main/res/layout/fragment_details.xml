@@ -77,7 +77,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rando_details_hosted_message" />
 
             <ImageView
-                android:id="@+id/rando_details_location_icon"
+                android:id="@+id/rando_item_location_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
@@ -89,7 +89,7 @@
                 app:srcCompat="@drawable/ic_location_on_primary_dark_16dp" />
 
             <TextView
-                android:id="@+id/rando_details_location_value"
+                android:id="@+id/rando_item_location_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -100,7 +100,7 @@
                 android:text="Marseille"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 app:layout_constraintBottom_toTopOf="@+id/rando_details_join_button"
-                app:layout_constraintStart_toEndOf="@+id/rando_details_location_icon"
+                app:layout_constraintStart_toEndOf="@+id/rando_item_location_icon"
                 app:layout_constraintTop_toBottomOf="@+id/rando_details_description" />
 
             <ImageView
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/rando_details_join_button"
-                app:layout_constraintStart_toEndOf="@+id/rando_details_location_value"
+                app:layout_constraintStart_toEndOf="@+id/rando_item_location_value"
                 app:layout_constraintTop_toBottomOf="@+id/rando_details_description"
                 app:srcCompat="@drawable/ic_people_primary_dark_16dp" />
 
