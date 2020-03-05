@@ -35,6 +35,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             googleMap = it
             googleMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style));
+            randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
+                // list is an ArrayList of Model.Rando
+                // You can display randos on map from here
+            })
         }
     }
 
@@ -44,9 +48,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
-            // list is an ArrayList of Model.Rando
-            // You can display randos on map from here
-        })
+        // UI manipulation goes here
+        // ex: view.findViewById(R.id.your_view_id)
     }
 }
