@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.randoexpress.views.home.DetailsFragment"
+        android:name="com.example.randoexpress.views.details.DetailsFragment"
         android:label="Details"
         tools:layout="@layout/fragment_details" />
     <fragment

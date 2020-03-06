@@ -1,11 +1,13 @@
-package com.example.randoexpress.views.home
+package com.example.randoexpress.views.details
 
 
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -55,9 +57,18 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
         val randoId = bundle!!.getInt("randoId")
+        val attendeeList: ListView = view.findViewById(R.id.rando_details_attendees_list)
         randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
             rando = list[randoId]
+            val array = ArrayList<String>()
+            rando.persons.forEach { user ->
+                array.add("${user.firstName} ${user.name}")
+                array.add("${user.firstName} ${user.name}")
+            }
+            val attendeeListAdapter: ArrayAdapter<String> = ArrayAdapter(context, R.layout.attendee_item, array)
+            attendeeList.adapter = attendeeListAdapter
             bindData(view)
+            setOnClickListeners(view)
         })
     }
 
@@ -75,6 +86,24 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         randoAttendeesNumber.text = rando.persons.size.toString()
         randoDateTime.text = "${rando.heureDepart} ${rando.dateDepart}"
     }
+
+    private fun setOnClickListeners(view: View){
+        val joinButton: Button = view.findViewById(R.id.rando_details_join_button)
+        val showAttendeesButton: Button = view.findViewById(R.id.rando_details_attendees_button)
+        val hideAttendees: ImageView = view.findViewById(R.id.rando_details_attendees_close)
+        val attendeesView: CardView = view.findViewById(R.id.details_list_card_view)
+
+        joinButton.setOnClickListener {
+
+        }
+        showAttendeesButton.setOnClickListener {
+            attendeesView.visibility = View.VISIBLE
+        }
+        hideAttendees.setOnClickListener {
+            attendeesView.visibility = View.GONE
+        }
+    }
+
 
     private fun placeMarkerMoveToIt(){
         val location = LatLng(rando.latitude.toDouble(), rando.longitude.toDouble())
