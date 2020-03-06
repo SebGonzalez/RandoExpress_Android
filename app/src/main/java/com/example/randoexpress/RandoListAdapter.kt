@@ -1,4 +1,4 @@
-package com.example.randoexpress.views.home
+package com.example.randoexpress
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.randoexpress.R
 import com.example.randoexpress.model.Model
 
 
-class RandoListAdapter(val data: ArrayList<Model.Rando>) :
+/**
+ * Adapter for displaying list of randos
+ * @param data ArrayList of randos to display
+ * @param destination action navigation for pressing on item
+ */
+class RandoListAdapter(val data: ArrayList<Model.Rando>, val destination: Int) :
     RecyclerView.Adapter<RandoListAdapter.MyViewHolder>() {
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -38,7 +40,7 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>) :
         holder.itemView.setOnClickListener { view ->
             Navigation
                 .findNavController(view)
-                .navigate(R.id.action_navigation_home_to_detailsFragment, bundle)
+                .navigate(destination, bundle)
         }
     }
 

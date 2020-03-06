@@ -1,43 +1,59 @@
 package com.example.randoexpress.views.home
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randoexpress.R
+import com.example.randoexpress.RandoListAdapter
 import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment() {
     private val randoViewModel: RandoListViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView : RecyclerView = view.findViewById(R.id.rando_list)
+        setupRecyclerView(view)
+        setupSearch(view)
+    }
+
+    private fun setupSearch(view: View) {
         val searchFab: FloatingActionButton = view.findViewById(R.id.search_fab)
         val searchBox: EditText = view.findViewById(R.id.search_box)
         searchFab.setOnClickListener {
-            if(searchBox.isGone)
+            if (searchBox.isGone)
                 searchBox.visibility = View.VISIBLE
             else
                 searchBox.visibility = View.GONE
         }
-        recyclerView.adapter = RandoListAdapter(ArrayList())
+    }
+
+    private fun setupRecyclerView(view: View) {
+        val recyclerView: RecyclerView = view.findViewById(R.id.rando_list)
+        recyclerView.adapter = RandoListAdapter(
+            ArrayList(),
+            R.id.action_navigation_home_to_detailsFragment
+        )
         randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = RandoListAdapter(list)
+            val adapter = RandoListAdapter(
+                list,
+                R.id.action_navigation_home_to_detailsFragment
+            )
             recyclerView.adapter = adapter
         })
     }

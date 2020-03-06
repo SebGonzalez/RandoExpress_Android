@@ -2,7 +2,6 @@ package com.example.randoexpress.views.details
 
 
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +39,8 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         map?.let {
             googleMap = it
             googleMap.setMapStyle(
-                MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style));
+                MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style)
+            );
             placeMarkerMoveToIt()
         }
     }
@@ -49,7 +49,6 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
@@ -57,22 +56,27 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
         val randoId = bundle!!.getInt("randoId")
-        val attendeeList: ListView = view.findViewById(R.id.rando_details_attendees_list)
         randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
             rando = list[randoId]
-            val array = ArrayList<String>()
-            rando.persons.forEach { user ->
-                array.add("${user.firstName} ${user.name}")
-                array.add("${user.firstName} ${user.name}")
-            }
-            val attendeeListAdapter: ArrayAdapter<String> = ArrayAdapter(context, R.layout.attendee_item, array)
-            attendeeList.adapter = attendeeListAdapter
             bindData(view)
+            setupAttendeesList(view)
             setOnClickListeners(view)
         })
     }
 
-    private fun bindData(view: View){
+    private fun setupAttendeesList(view: View) {
+        val attendeeList: ListView = view.findViewById(R.id.rando_details_attendees_list)
+        val array = ArrayList<String>()
+        // copying user names from list of users to string ArrayList
+        rando.persons.forEach { user ->
+            array.add("${user.firstName} ${user.name}")
+        }
+        val attendeeListAdapter: ArrayAdapter<String> =
+            ArrayAdapter(context, R.layout.attendee_item, array)
+        attendeeList.adapter = attendeeListAdapter
+    }
+
+    private fun bindData(view: View) {
         val randoTitle: TextView = view.findViewById(R.id.rando_details_title)
         val randoHost: TextView = view.findViewById(R.id.rando_details_host_name_value)
         val randoDescription: TextView = view.findViewById(R.id.rando_details_description)
@@ -87,7 +91,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         randoDateTime.text = "${rando.heureDepart} ${rando.dateDepart}"
     }
 
-    private fun setOnClickListeners(view: View){
+    private fun setOnClickListeners(view: View) {
         val joinButton: Button = view.findViewById(R.id.rando_details_join_button)
         val showAttendeesButton: Button = view.findViewById(R.id.rando_details_attendees_button)
         val hideAttendees: ImageView = view.findViewById(R.id.rando_details_attendees_close)
@@ -105,13 +109,14 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
     }
 
 
-    private fun placeMarkerMoveToIt(){
+    private fun placeMarkerMoveToIt() {
         val location = LatLng(rando.latitude.toDouble(), rando.longitude.toDouble())
-        googleMap.addMarker(MarkerOptions()
+        googleMap.addMarker(
+            MarkerOptions()
                 .position(location)
-                .title(rando.name))
+                .title(rando.name)
+        )
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12f));
-
     }
 
 
