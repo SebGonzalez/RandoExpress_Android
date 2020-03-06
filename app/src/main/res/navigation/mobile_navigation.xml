@@ -52,4 +52,9 @@
         android:name="com.example.randoexpress.views.SignInFragment"
         android:label="Sign In"
         tools:layout="@layout/fragment_sign_in" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.randoexpress.views.SettingsFragment"
+        android:label="Fragment Settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

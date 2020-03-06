@@ -13,7 +13,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_search" />
+        app:srcCompat="@drawable/ic_search_blue_32dp" />
 
     <EditText
         android:id="@+id/search_box"
