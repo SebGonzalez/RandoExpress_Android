@@ -8,7 +8,6 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap
     private val randoViewModel: RandoListViewModel by viewModels()
 
-    private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+    private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION)
     lateinit var locationManager: LocationManager
     private var locationGps: Location? = null
 
@@ -78,7 +78,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             // We get and display the user's location on the map if we have the permissions
             val currentLocation = getLocation()
             if (currentLocation != null){
-                val curLatLng = LatLng(getLocation().latitude, getLocation().longitude)
+                val curLatLng = LatLng(getLocation()!!.latitude, getLocation()!!.longitude)
                 googleMap.addMarker(MarkerOptions()
                     .position(curLatLng)
                     .title("Je suis ici")
@@ -122,7 +122,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     @SuppressLint("MissingPermission")
-    fun getLocation() : Location {
+    fun getLocation() : Location? {
 
         locationManager = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
@@ -142,10 +142,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
                 if (localGpsLocation != null) {
                     locationGps = localGpsLocation;
-                    return locationGps as Location;
+                    return locationGps
                 }
         }
-        return locationGps as Location;
+        return locationGps
     }
 
 }
