@@ -19,7 +19,6 @@ class DashboardFragment : Fragment() {
     private lateinit var demoCollectionAdapter: DemoCollectionAdapter
     private lateinit var viewPager: ViewPager2
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
