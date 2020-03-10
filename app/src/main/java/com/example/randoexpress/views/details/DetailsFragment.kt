@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.example.randoexpress.R
 import com.example.randoexpress.model.Model
 import com.example.randoexpress.viewmodels.RandoListViewModel
@@ -98,7 +99,8 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         val attendeesView: CardView = view.findViewById(R.id.details_list_card_view)
 
         joinButton.setOnClickListener {
-
+            Navigation.findNavController(it)
+                .navigate(R.id.action_detailsFragment_to_navigation_dashboard)
         }
         showAttendeesButton.setOnClickListener {
             if (attendeesView.visibility == View.VISIBLE)

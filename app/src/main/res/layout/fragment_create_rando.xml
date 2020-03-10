@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.authentication.SignInFragment">
+    tools:context=".createrando.CreateRandoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Create new account"
+            android:text="Create new hike"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="26sp"
@@ -37,8 +37,8 @@
                 android:id="@+id/create_rando_title_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
+                android:hint="Title"
+                android:inputType="text"
                 android:padding="8dp"
                 android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -57,8 +57,8 @@
                 android:id="@+id/create_rando_description_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="First name"
-                android:inputType="textEmailAddress"
+                android:hint="Description"
+                android:inputType="textMultiLine"
                 android:padding="8dp"
                 android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -77,51 +77,21 @@
                 android:id="@+id/create_rando_location_name_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Last name"
-                android:inputType="textEmailAddress"
+                android:hint="Location name"
+                android:inputType="textPostalAddress"
                 android:padding="8dp"
                 android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/sign_in_password_input"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+
+        <com.example.randoexpress.createrando.ScrollableMapView
+            android:id="@+id/create_rando_map_view"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_rando_location_name_input">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_in_password_input_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textColor="@android:color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signin_repeat_password_input"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_password_input">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signin_repeat_password_input_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Repeat password"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textColor="@android:color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/create_rando_location_name_input" />
 
         <Button
             android:id="@+id/signin_button"
@@ -130,12 +100,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/colorAccent"
-            android:text="Signin"
+            android:text="Create hike"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signin_repeat_password_input" />
+            app:layout_constraintTop_toBottomOf="@+id/create_rando_map_view" />
 
         <TextView
             android:id="@+id/sign_in_message"

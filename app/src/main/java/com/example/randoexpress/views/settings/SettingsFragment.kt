@@ -29,7 +29,7 @@ class SettingsFragment : Fragment() {
         }
         createRandoButton.setOnClickListener { v ->
             Navigation.findNavController(v)
-                .navigate(R.id.action_navigation_settings_to_loginFragment)
+                .navigate(R.id.action_navigation_settings_to_createRandoFragment)
         }
         changePasswordButton.setOnClickListener { v ->
             Navigation.findNavController(v)

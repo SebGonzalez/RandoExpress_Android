@@ -42,7 +42,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.randoexpress.views.details.DetailsFragment"
         android:label="Details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.randoexpress.views.authentication.LoginFragment"
@@ -88,5 +92,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_settings_to_createRandoFragment"
+            app:destination="@id/createRandoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createRandoFragment"
+        android:name="com.example.randoexpress.createrando.CreateRandoFragment"
+        android:label="fragment_create_rando"
+        tools:layout="@layout/fragment_create_rando" />
 </navigation>
