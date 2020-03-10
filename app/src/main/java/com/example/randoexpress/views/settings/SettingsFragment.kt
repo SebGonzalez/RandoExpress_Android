@@ -1,4 +1,4 @@
-package com.example.randoexpress.views
+package com.example.randoexpress.views.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,4 +20,8 @@ class SettingsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 }
