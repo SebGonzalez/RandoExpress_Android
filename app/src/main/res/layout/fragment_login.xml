@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/login_login_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -19,13 +19,13 @@
             android:background="@color/colorAccent"
             android:text="Login"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/signin_button"
+            app:layout_constraintEnd_toStartOf="@+id/login_signin_button"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_task_description_input" />
 
         <Button
-            android:id="@+id/signin_button"
+            android:id="@+id/login_signin_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/login_button"
+            app:layout_constraintStart_toEndOf="@+id/login_login_button"
             app:layout_constraintTop_toBottomOf="@+id/new_task_description_input" />
 
         <TextView
