@@ -1,4 +1,4 @@
-package com.example.randoexpress.views
+package com.example.randoexpress.views.authentication
 
 
 import android.os.Bundle

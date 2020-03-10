@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -44,12 +47,12 @@
         tools:layout="@layout/fragment_details" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.randoexpress.views.LoginFragment"
+        android:name="com.example.randoexpress.views.authentication.LoginFragment"
         android:label="Log In"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.randoexpress.views.SignInFragment"
+        android:name="com.example.randoexpress.views.authentication.SignInFragment"
         android:label="Sign In"
         tools:layout="@layout/fragment_sign_in" />
     <fragment

@@ -18,4 +18,16 @@ class RandoListViewModel : ViewModel(){
         Log.i("====>getRandoList", "FETCHING DATA")
         emit(randoList)
     }
+
+    val getFutureRandoList = liveData(Dispatchers.IO) {
+        val randoList = repository.getRandoList()
+        Log.i("====>getFutureRandoList", "FETCHING DATA")
+        emit(randoList)
+    }
+
+    val getPastRandoList = liveData(Dispatchers.IO) {
+        val randoList = repository.getRandoList()
+        Log.i("====>getPastRandoList", "FETCHING DATA")
+        emit(randoList)
+    }
 }

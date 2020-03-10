@@ -41,7 +41,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
             googleMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style)
             );
-            placeMarkerMoveToIt()
+            placeMarker()
         }
     }
 
@@ -101,7 +101,11 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
 
         }
         showAttendeesButton.setOnClickListener {
-            attendeesView.visibility = View.VISIBLE
+            if (attendeesView.visibility == View.VISIBLE)
+                attendeesView.visibility = View.GONE
+            else if (attendeesView.visibility == View.GONE)
+                attendeesView.visibility = View.VISIBLE
+
         }
         hideAttendees.setOnClickListener {
             attendeesView.visibility = View.GONE
@@ -109,13 +113,17 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
     }
 
 
-    private fun placeMarkerMoveToIt() {
+    private fun placeMarker() {
         val location = LatLng(rando.latitude.toDouble(), rando.longitude.toDouble())
         googleMap.addMarker(
             MarkerOptions()
                 .position(location)
                 .title(rando.name)
         )
+        moveCamera(location)
+    }
+
+    private fun moveCamera(location: LatLng) {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12f));
     }
 
