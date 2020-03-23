@@ -12,8 +12,21 @@ object Model {
                      val longitude: String,
                      val owner: User,
                      val persons: Array<User>
-                     )
+    )
     data class User(val firstName: String,
                     val name: String,
-                    val id: Int)
+                    val id: Int,
+                    val jwt: String,
+                    val message: String,
+                    val mail: String
+    )
+    data class SignUpUser(val firstName: String,
+                    val name: String,
+                    val password: String,
+                    val mail: String
+    )
+    data class LoginUser(val mail: String,
+                         val password: String
+    )
+    data class Message(val message: String)
 }

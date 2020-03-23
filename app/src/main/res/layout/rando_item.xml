@@ -19,18 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/rando_item_map_snapshot"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:adjustViewBounds="false"
-            android:contentDescription="@string/rando_item_map_snapshot_description"
-            android:cropToPadding="false"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/map_snippet" />
 
         <TextView
             android:id="@+id/rando_title"
@@ -45,7 +33,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rando_item_map_snapshot"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Title that does fit in one line" />
 
         <TextView

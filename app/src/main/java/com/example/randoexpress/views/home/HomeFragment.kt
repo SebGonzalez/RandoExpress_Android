@@ -1,6 +1,8 @@
 package com.example.randoexpress.views.home
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +18,6 @@ import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment() {
-    private val randoViewModel: RandoListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +33,9 @@ class HomeFragment : Fragment() {
         setupSearch(view)
     }
 
+    /**
+     * TODO Implement search
+     */
     private fun setupSearch(view: View) {
         val searchFab: FloatingActionButton = view.findViewById(R.id.search_fab)
         val searchBox: EditText = view.findViewById(R.id.search_box)
@@ -43,13 +47,22 @@ class HomeFragment : Fragment() {
         }
     }
 
+    /**
+     * Fetches data from view model and passing it into adapter
+     * @param fragment root view
+     */
     private fun setupRecyclerView(view: View) {
         val recyclerView: RecyclerView = view.findViewById(R.id.rando_list)
         recyclerView.adapter = RandoListAdapter(
             ArrayList(),
             R.id.action_navigation_home_to_detailsFragment
         )
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val jwt: String = sharedPref.getString("jwt", "none") as String
+        Log.i("====>Home fragment", "JWT:"+jwt)
+        val randoViewModel = RandoListViewModel(jwt)
         randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
+            Log.i("==>Home fragment result", "List:"+list)
             val adapter = RandoListAdapter(
                 list,
                 R.id.action_navigation_home_to_detailsFragment

@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/sign_in_welcome_message">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_rando_title_input_text"
+                android:id="@+id/signup_email_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/create_rando_title_input">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_rando_description_input_text"
+                android:id="@+id/signup_first_name_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Description"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/create_rando_description_input">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_rando_location_name_input_text"
+                android:id="@+id/signup_last_name_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location name"
@@ -94,7 +94,7 @@
             app:layout_constraintTop_toBottomOf="@id/create_rando_location_name_input" />
 
         <Button
-            android:id="@+id/signin_button"
+            android:id="@+id/signup_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signin_button" />
+            app:layout_constraintTop_toBottomOf="@+id/signup_button" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

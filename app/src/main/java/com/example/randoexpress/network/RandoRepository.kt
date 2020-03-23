@@ -1,15 +1,19 @@
 package com.example.randoexpress.network
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.randoexpress.model.Model
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RandoRepository {
     private var client: RandoService = webservice
 
-    suspend fun getRandoList() = client.getRandos()
+    suspend fun getRandoList(jwt: String) = client.getRandos(jwt)
+    suspend fun getRando(jwt: String, id: Int) = client.getRando(jwt, id)
+    suspend fun getFutureRandoList(jwt: String, id: Int) = client.getFutureRandos(jwt, id)
+    suspend fun getPastRandoList(jwt: String, id: Int) = client.getPastRandos(jwt, id)
+
+    suspend fun signupUser(user: Model.SignUpUser) = client.auth(user)
+    suspend fun loginUser(user: Model.LoginUser) = client.login(user)
+
+    suspend fun subscribe(jwt: String, id: Int, email: String) = client.subscribe(jwt, id, email)
+    suspend fun unsubscribe(jwt: String, id: Int, email: String) = client.unsubscribe(jwt, id, email)
+
 }

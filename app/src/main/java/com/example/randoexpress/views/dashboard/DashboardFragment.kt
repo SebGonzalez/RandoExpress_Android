@@ -10,6 +10,9 @@ import com.example.randoexpress.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
+/**
+ * Dashboard screen fragment
+ */
 class DashboardFragment : Fragment() {
 
     private lateinit var viewPagerAdapter: UpcomingAndPastViewPagerAdapter

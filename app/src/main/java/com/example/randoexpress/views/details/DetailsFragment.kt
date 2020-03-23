@@ -1,7 +1,10 @@
 package com.example.randoexpress.views.details
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +12,13 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.example.randoexpress.R
 import com.example.randoexpress.model.Model
 import com.example.randoexpress.viewmodels.RandoListViewModel
+import com.example.randoexpress.viewmodels.SubscriptionViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -27,7 +32,13 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var rando: Model.Rando
     private lateinit var googleMap: GoogleMap
-    private val randoViewModel: RandoListViewModel by activityViewModels()
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var jwt: String
+    private lateinit var email: String
+    private var randoId: Int = 0
+    private var randoOrigin: Int = 0
+
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -42,7 +53,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
             googleMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style)
             );
-            placeMarker()
+
         }
     }
 
@@ -56,15 +67,39 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
-        val randoId = bundle!!.getInt("randoId")
-        randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
-            rando = list[randoId]
+        randoId = bundle!!.getInt("randoId")
+        sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        randoOrigin = bundle.getInt("randoOrigin")
+        jwt = sharedPref.getString("jwt", "none") as String
+        email = sharedPref.getString("email", "none") as String
+        val randoViewModel = RandoListViewModel(jwt, randoId)
+        randoViewModel.getRando.observe(viewLifecycleOwner, Observer { r ->
+            rando = r
+            Log.i("===>Details", "Rando="+r)
             bindData(view)
             setupAttendeesList(view)
-            setOnClickListeners(view)
+            setAttendeesOnClickListener(view)
+            adaptViewToOrigin(view)
+            placeMarker()
         })
     }
 
+    /**
+     * Adapts join/leave button according to the context of display
+     * @param fragment root view
+     */
+    private fun adaptViewToOrigin(view: View){
+        if(randoOrigin == R.id.action_navigation_home_to_detailsFragment){
+            setJoinOnClickListener(view)
+        } else if(randoOrigin == R.id.action_navigation_dashboard_to_detailsFragment){
+            setLeaveOnClickListener(view)
+        }
+    }
+
+    /**
+     * Displays list of people attending the hike
+     * @param fragment root view
+     */
     private fun setupAttendeesList(view: View) {
         val attendeeList: ListView = view.findViewById(R.id.rando_details_attendees_list)
         val array = ArrayList<String>()
@@ -77,6 +112,10 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         attendeeList.adapter = attendeeListAdapter
     }
 
+    /**
+     * Binds hike data to the views
+     * @param fragment root view
+     */
     private fun bindData(view: View) {
         val randoTitle: TextView = view.findViewById(R.id.rando_details_title)
         val randoHost: TextView = view.findViewById(R.id.rando_details_host_name_value)
@@ -92,16 +131,16 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         randoDateTime.text = "${rando.heureDepart} ${rando.dateDepart}"
     }
 
-    private fun setOnClickListeners(view: View) {
-        val joinButton: Button = view.findViewById(R.id.rando_details_join_button)
+    /**
+     * Show/hide attendees list logic
+     * uses both "show" and "X" button to hide list
+     * @param fragment root view
+     */
+    private fun setAttendeesOnClickListener(view: View) {
         val showAttendeesButton: Button = view.findViewById(R.id.rando_details_attendees_button)
         val hideAttendees: ImageView = view.findViewById(R.id.rando_details_attendees_close)
         val attendeesView: CardView = view.findViewById(R.id.details_list_card_view)
 
-        joinButton.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_detailsFragment_to_navigation_dashboard)
-        }
         showAttendeesButton.setOnClickListener {
             if (attendeesView.visibility == View.VISIBLE)
                 attendeesView.visibility = View.GONE
@@ -114,7 +153,44 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Join the current hike logic
+     * @param fragment root view
+     */
+    private fun setJoinOnClickListener(view: View){
+        val joinButton: Button = view.findViewById(R.id.rando_details_join_button)
+        val subscriptionViewModel = SubscriptionViewModel(jwt, randoId, email)
+        joinButton.setOnClickListener {
+            subscriptionViewModel.subscribe.observe(viewLifecycleOwner, Observer { message ->
+                Log.i("====>Details", "Subscribe")
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_detailsFragment_to_navigation_dashboard)
+            })
+        }
+    }
 
+    /**
+     * Leave the current hike logic
+     * @param fragment root view
+     */
+    private fun setLeaveOnClickListener(view: View){
+        val joinButton: Button = view.findViewById(R.id.rando_details_join_button)
+        joinButton.text = "Leave"
+        val subscriptionViewModel = SubscriptionViewModel(jwt, randoId, email)
+        joinButton.setOnClickListener {
+            subscriptionViewModel.unsubscribe.observe(viewLifecycleOwner, Observer { message ->
+                Log.i("====>Details", "Unsubscription")
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_detailsFragment_to_navigation_dashboard)
+            })
+
+        }
+    }
+
+
+    /**
+     * Places current hike marker on map
+     */
     private fun placeMarker() {
         val location = LatLng(rando.latitude.toDouble(), rando.longitude.toDouble())
         googleMap.addMarker(
@@ -125,6 +201,9 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         moveCamera(location)
     }
 
+    /**
+     * Centers camera on marker of current hike
+     */
     private fun moveCamera(location: LatLng) {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12f));
     }

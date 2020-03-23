@@ -8,6 +8,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,6 @@ import kotlinx.android.synthetic.main.fragment_map.*
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
-    private val randoViewModel: RandoListViewModel by viewModels()
 
     private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -56,10 +56,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map?.let {
             googleMap = it
             googleMap.setMapStyle(
-                MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style));
+                MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style))
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+            val jwt: String = sharedPref.getString("jwt", "none") as String
+            Log.i("====>Home fragment", "JWT:"+jwt)
+            val randoViewModel = RandoListViewModel(jwt)
             randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
-                // list is an ArrayList of Model.Rando
-                // You can display randos on map from here
+                // iterating through list of Rando
+                // and placing marker for each
                 list.forEach { rando: Model.Rando ->
                     val location = LatLng(rando.latitude.toDouble(), rando.longitude.toDouble())
                     googleMap.addMarker(MarkerOptions()

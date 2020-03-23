@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val webservice: RandoService by lazy {
     Retrofit.Builder()
-        .baseUrl("https://api.myjson.com")
+        .baseUrl("http://ec2-54-224-135-228.compute-1.amazonaws.com:8080")
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         .build().create(RandoService::class.java)
 }

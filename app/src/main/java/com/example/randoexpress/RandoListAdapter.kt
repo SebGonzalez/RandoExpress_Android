@@ -36,7 +36,8 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>, val destination: Int) :
         holder.location.text = data[position].ville
         holder.dateTime.text = "${data[position].heureDepart} ${data[position].dateDepart}"
         val bundle = Bundle()
-        bundle.putInt("randoId", position)
+        bundle.putInt("randoId", data[position].id)
+        bundle.putInt("randoOrigin", destination)
         holder.itemView.setOnClickListener { view ->
             Navigation
                 .findNavController(view)

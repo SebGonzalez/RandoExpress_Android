@@ -1,6 +1,8 @@
 package com.example.randoexpress.views.dashboard
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,9 @@ import com.example.randoexpress.RandoListAdapter
 import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/**
+ * Dashboard tab fragment
+ */
 class UpcomingAndPastRandoListFragment : Fragment() {
 
     companion object {
@@ -20,7 +25,6 @@ class UpcomingAndPastRandoListFragment : Fragment() {
         const val PAST_RANDO_TAB = 2
     }
 
-    private val randoViewModel: RandoListViewModel by activityViewModels()
     var selectedTab: Int = 0
 
     override fun onCreateView(
@@ -51,6 +55,12 @@ class UpcomingAndPastRandoListFragment : Fragment() {
             ArrayList(),
             R.id.action_navigation_dashboard_to_detailsFragment
         )
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val jwt: String = sharedPref.getString("jwt", "none") as String
+        val userId: Int = sharedPref.getInt("id", 0)
+        Log.i("====>Dashboard", "JWT:"+jwt)
+        Log.i("====>Dashboard", "User ID:"+userId)
+        val randoViewModel = RandoListViewModel(jwt, userId)
         if(selectedTab == UPCOMING_RANDO_TAB) {
             randoViewModel.getFutureRandoList.observe(viewLifecycleOwner, Observer { list ->
                 val adapter = RandoListAdapter(

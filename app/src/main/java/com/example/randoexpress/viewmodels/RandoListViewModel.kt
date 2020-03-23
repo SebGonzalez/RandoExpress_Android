@@ -10,23 +10,29 @@ import kotlinx.coroutines.Dispatchers
 import okhttp3.Dispatcher
 
 
-class RandoListViewModel : ViewModel(){
+class RandoListViewModel(jwt: String, id: Int = 0) : ViewModel(){
     val repository: RandoRepository = RandoRepository()
 
     val getRandoList = liveData(Dispatchers.IO) {
-        val randoList = repository.getRandoList()
+        val randoList = repository.getRandoList(jwt)
         Log.i("====>getRandoList", "FETCHING DATA")
         emit(randoList)
     }
 
+    val getRando = liveData(Dispatchers.IO) {
+        val rando = repository.getRando(jwt, id)
+        Log.i("====>getRandoList", "FETCHING DATA")
+        emit(rando)
+    }
+
     val getFutureRandoList = liveData(Dispatchers.IO) {
-        val randoList = repository.getRandoList()
+        val randoList = repository.getFutureRandoList(jwt, id)
         Log.i("====>getFutureRandoList", "FETCHING DATA")
         emit(randoList)
     }
 
     val getPastRandoList = liveData(Dispatchers.IO) {
-        val randoList = repository.getRandoList()
+        val randoList = repository.getPastRandoList(jwt, id)
         Log.i("====>getPastRandoList", "FETCHING DATA")
         emit(randoList)
     }
