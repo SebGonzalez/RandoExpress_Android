@@ -98,7 +98,11 @@
     </fragment>
     <fragment
         android:id="@+id/createRandoFragment"
-        android:name="com.example.randoexpress.createrando.CreateRandoFragment"
+        android:name="com.example.randoexpress.views.createrando.CreateRandoFragment"
         android:label="fragment_create_rando"
-        tools:layout="@layout/fragment_create_rando" />
+        tools:layout="@layout/fragment_create_rando" >
+        <action
+            android:id="@+id/action_createRandoFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

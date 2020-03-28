@@ -8,14 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.viewModels
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.example.randoexpress.R
 import com.example.randoexpress.model.Model
-import com.example.randoexpress.network.RandoRepository
 import com.example.randoexpress.viewmodels.AuthViewModel
-import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.material.textfield.TextInputEditText
 
 /**
@@ -46,6 +44,7 @@ class SignUpFragment : Fragment() {
             Log.i("user", "User: "+newUser)
             val authViewModel = AuthViewModel(newUser)
             authViewModel.signupUser.observe(viewLifecycleOwner, Observer { message ->
+                Toast.makeText(context, "Account successfully created!", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(v)
                     .navigate(R.id.action_signInFragment_to_loginFragment)
             })

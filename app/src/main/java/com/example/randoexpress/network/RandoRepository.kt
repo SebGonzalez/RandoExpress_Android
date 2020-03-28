@@ -9,6 +9,7 @@ class RandoRepository {
     suspend fun getRando(jwt: String, id: Int) = client.getRando(jwt, id)
     suspend fun getFutureRandoList(jwt: String, id: Int) = client.getFutureRandos(jwt, id)
     suspend fun getPastRandoList(jwt: String, id: Int) = client.getPastRandos(jwt, id)
+    suspend fun addRando(jwt: String, rando: Model.Rando) = client.addRando(jwt, rando)
 
     suspend fun signupUser(user: Model.SignUpUser) = client.auth(user)
     suspend fun loginUser(user: Model.LoginUser) = client.login(user)

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:visibility="gone"
         android:layout_margin="16dp"
         android:clickable="true"
         app:srcCompat="@drawable/ic_search_blue_32dp" />
@@ -38,6 +39,7 @@
         android:overScrollMode="never"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
+
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

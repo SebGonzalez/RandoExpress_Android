@@ -1,4 +1,4 @@
-package com.example.randoexpress.createrando
+package com.example.randoexpress.views.createrando
 
 import android.content.Context
 import android.util.AttributeSet
@@ -22,4 +22,6 @@ class ScrollableMapView : MapView {
         parent.requestDisallowInterceptTouchEvent(true)
         return super.dispatchTouchEvent(ev)
     }
+
+
 }

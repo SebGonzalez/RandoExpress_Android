@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_rando_title_input"
+            android:id="@+id/signup_email_input"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,14 +44,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_rando_description_input"
+            android:id="@+id/signup_first_name_input"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_rando_title_input">
+            app:layout_constraintTop_toBottomOf="@+id/signup_email_input">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signup_first_name_input_text"
@@ -64,14 +64,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_rando_location_name_input"
+            android:id="@+id/signup_last_name_input"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_rando_description_input">
+            app:layout_constraintTop_toBottomOf="@+id/signup_first_name_input">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signup_last_name_input_text"
@@ -91,7 +91,7 @@
             android:layout_margin="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_rando_location_name_input">
+            app:layout_constraintTop_toBottomOf="@+id/signup_last_name_input">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signup_password_input_text"

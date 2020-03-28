@@ -163,6 +163,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         joinButton.setOnClickListener {
             subscriptionViewModel.subscribe.observe(viewLifecycleOwner, Observer { message ->
                 Log.i("====>Details", "Subscribe")
+                Toast.makeText(context, "You joined a hike!", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(it)
                     .navigate(R.id.action_detailsFragment_to_navigation_dashboard)
             })
@@ -180,6 +181,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         joinButton.setOnClickListener {
             subscriptionViewModel.unsubscribe.observe(viewLifecycleOwner, Observer { message ->
                 Log.i("====>Details", "Unsubscription")
+                Toast.makeText(context, "You left a hike!", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(it)
                     .navigate(R.id.action_detailsFragment_to_navigation_dashboard)
             })

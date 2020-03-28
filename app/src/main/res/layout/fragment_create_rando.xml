@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".createrando.CreateRandoFragment">
+    tools:context=".views.createrando.CreateRandoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/sign_in_welcome_message">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_email_input_text"
+                android:id="@+id/create_rando_title_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/create_rando_title_input">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_first_name_input_text"
+                android:id="@+id/create_rando_description_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Description"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/create_rando_description_input">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_last_name_input_text"
+                android:id="@+id/create_rando_location_name_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location name"
@@ -83,15 +83,57 @@
                 android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_rando_time_input"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_rando_location_name_input"
+            tools:hint="text">
 
-        <com.example.randoexpress.createrando.ScrollableMapView
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_rando_time_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Time in hh:mm format"
+                android:inputType="textPostalAddress"
+                android:padding="8dp"
+                android:textColor="@android:color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_rando_date_input"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_rando_time_input"
+            tools:hint="text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_rando_date_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date in dd/mm/yy format"
+                android:inputType="textPostalAddress"
+                android:padding="8dp"
+                android:textColor="@android:color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.example.randoexpress.views.createrando.ScrollableMapView
             android:id="@+id/create_rando_map_view"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/create_rando_location_name_input" />
+            app:layout_constraintTop_toBottomOf="@+id/create_rando_date_input" />
 
         <Button
             android:id="@+id/signup_button"
@@ -111,6 +153,7 @@
             android:id="@+id/sign_in_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="all fields are required"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"

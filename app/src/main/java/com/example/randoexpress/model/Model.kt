@@ -5,7 +5,7 @@ object Model {
     data class Rando(val ville: String,
                      val name: String,
                      val description: String,
-                     val id: Int,
+                     val id: Int? = null,
                      val dateDepart: String,
                      val heureDepart: String,
                      val latitude: String,
@@ -16,14 +16,15 @@ object Model {
     data class User(val firstName: String,
                     val name: String,
                     val id: Int,
-                    val jwt: String,
-                    val message: String,
-                    val mail: String
+                    val jwt: String = "",
+                    val message: String = "",
+                    val mail: String,
+                    val password: String
     )
     data class SignUpUser(val firstName: String,
-                    val name: String,
-                    val password: String,
-                    val mail: String
+                          val name: String,
+                          val password: String,
+                          val mail: String
     )
     data class LoginUser(val mail: String,
                          val password: String

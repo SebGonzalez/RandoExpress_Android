@@ -56,6 +56,7 @@
             android:id="@+id/rando_item_location_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:backgroundTint="@color/colorPrimary"
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,11 +66,12 @@
 
         <TextView
             android:id="@+id/rando_item_location_value"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Marseille"
+            tools:text="Marseille"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rando_item_attending_icon"
             app:layout_constraintStart_toEndOf="@+id/rando_item_location_icon"
             app:layout_constraintTop_toBottomOf="@+id/rando_item_description" />
 
@@ -78,9 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:paddingStart="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rando_item_location_value"
+            app:layout_constraintEnd_toStartOf="@+id/rando_item_attending_number"
             app:layout_constraintTop_toBottomOf="@+id/rando_item_description"
             app:srcCompat="@drawable/ic_people_primary_dark_16dp" />
 
@@ -88,10 +89,11 @@
             android:id="@+id/rando_item_attending_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9"
+            android:layout_marginEnd="24dp"
+            tools:text="9"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rando_item_attending_icon"
+            app:layout_constraintEnd_toStartOf="@+id/rando_item_time_icon"
             app:layout_constraintTop_toBottomOf="@+id/rando_item_description" />
 
         <TextView
@@ -125,9 +127,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:paddingStart="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rando_item_attending_number"
+            app:layout_constraintEnd_toStartOf="@+id/rando_item_time_value"
             app:layout_constraintTop_toBottomOf="@+id/rando_item_description"
             app:srcCompat="@drawable/ic_access_time_orange_16dp" />
 
@@ -135,13 +136,13 @@
             android:id="@+id/rando_item_time_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="20/20/20 19:56"
+            tools:text="19:56 20/02/2020"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rando_item_time_icon"
             app:layout_constraintTop_toBottomOf="@+id/rando_item_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

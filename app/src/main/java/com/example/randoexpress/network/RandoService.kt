@@ -27,6 +27,11 @@ interface RandoService {
     @POST("/RandoExpress_API/ws/rest/auth")
     suspend fun login(@Body user: Model.LoginUser): Model.User
 
+    @Headers("Content-Type:application/json")
+    @POST("/RandoExpress_API/ws/rest/rando")
+    suspend fun addRando(@Header("Authorization") jwt: String,
+                         @Body rando: Model.Rando): Model.Message
+
     @POST("/RandoExpress_API/ws/rest/rando/{id}/inscription/{mail}")
     suspend fun subscribe(@Header("Authorization") jwt: String,
                           @Path("id") id: Int,
