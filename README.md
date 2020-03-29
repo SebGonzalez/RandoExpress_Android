@@ -12,6 +12,7 @@ Built using Navigation Architecture Component, MVVM, Retrofit, Coroutines.
 - current user location on map
 - open hike details after clicking on a map marker
 - unit + ui tests
+- extract strings into resources and add french translation
 
 ### Screenshots
 <br/>
