@@ -6,6 +6,7 @@ Functionality: sign up, log in, view list of all available hikes as a list or on
 Built using Navigation Architecture Component, MVVM, Retrofit, Coroutines.
 ### TODO
 - verify input (login, signup)
+- search hikes by location
 - date/time picker when creating a new hike
 - remove double participation in a hike for a same user
 - catch network errors
