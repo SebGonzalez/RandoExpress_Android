@@ -14,5 +14,11 @@ Built using Navigation Architecture Component, MVVM, Retrofit, Coroutines.
 
 ### Screenshots
 <br/>
-<img src="https://i.imgur.com/lB0GBx9.png" alt="List of hikes" width="180"/><img src="https://i.imgur.com/vJFJfHO.png" alt="Hike details" width="180"/><img src="https://i.imgur.com/N13xFMo.png" alt="Hike map" width="180"/><img src="https://i.imgur.com/AQswCLN.png" alt="Add a new hike" width="180"/>
-<br/><br/>
+<p float="left">
+<img src="https://i.imgur.com/lB0GBx9.png" alt="List of hikes" width="200"/>
+<img src="https://i.imgur.com/vJFJfHO.png" alt="Hike details" width="200"/>
+<img src="https://i.imgur.com/N13xFMo.png" alt="Hike map" width="200"/>
+<img src="https://i.imgur.com/AQswCLN.png" alt="Add a new hike" width="200"/>
+</p>
+<br/>
+Please note: some parts might be different
