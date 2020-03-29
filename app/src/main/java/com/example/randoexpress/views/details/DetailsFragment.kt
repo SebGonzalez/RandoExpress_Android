@@ -69,9 +69,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         getBundleData()
         getSharedPref()
         setupSubscriptionViewModel()
-        //subscriptionViewModel = SubscriptionViewModel(jwt, randoId, email)
         setupRandoListViewModel()
-        //randoViewModel = RandoListViewModel(jwt, randoId)
         randoListViewModel.getRando.observe(viewLifecycleOwner, Observer { r ->
             rando = r
             Log.i("===>Details", "Rando=" + r)
@@ -102,6 +100,10 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         randoListViewModel.id = randoId
     }
 
+    /**
+     * Fetch data from passed bundle
+     * bundle comes from RandoListAdapter
+     */
     private fun getBundleData(){
         val bundle = arguments
         randoId = bundle!!.getInt("randoId")

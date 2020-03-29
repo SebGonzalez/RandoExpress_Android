@@ -65,7 +65,6 @@ class HomeFragment : Fragment() {
         Log.i("====>Home fragment", "JWT:"+jwt)
         randoListViewModel = ViewModelProvider(this).get(RandoListViewModel::class.java)
         randoListViewModel.jwt = jwt
-        //randoListViewModel = RandoListViewModel(jwt)
         randoListViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
             Log.i("==>Home fragment result", "List:"+list)
             val adapter = RandoListAdapter(

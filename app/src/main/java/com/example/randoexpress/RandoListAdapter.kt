@@ -28,6 +28,9 @@ class RandoListAdapter(val data: ArrayList<Model.Rando>, val destination: Int) :
         return data.size
     }
 
+    /**
+     * Binds data to UI
+     */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.title.text = data[position].name
         holder.description.text = data[position].description

@@ -39,7 +39,6 @@ class SignUpFragment : Fragment() {
             Log.i("user", "User: "+newUser)
             authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
             authViewModel.user = newUser
-            //authViewModel = AuthViewModel(newUser)
             authViewModel.signupUser.observe(viewLifecycleOwner, Observer { message ->
                 Toast.makeText(context, "Account successfully created!", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(v)

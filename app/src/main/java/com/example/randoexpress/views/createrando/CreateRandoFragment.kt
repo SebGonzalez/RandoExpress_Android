@@ -76,7 +76,6 @@ class CreateRandoFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDr
             createRandoViewModel = ViewModelProvider(this).get(CreateRandoViewModel::class.java)
             createRandoViewModel.jwt = jwt
             createRandoViewModel.rando = newRando
-            //createRandoViewModel = CreateRandoViewModel(jwt, newRando)
             createRandoViewModel.addRando.observe(viewLifecycleOwner, Observer {
                 Log.i("===>Create rando", "" + newRando)
                 Log.i("===>Create rando", "" + it)

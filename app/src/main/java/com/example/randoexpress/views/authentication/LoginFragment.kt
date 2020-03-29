@@ -46,7 +46,6 @@ class LoginFragment : Fragment() {
             Log.i("====>LoginFragment", "Input" + loginUser)
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
             loginViewModel.user = loginUser
-            //loginViewModel = LoginViewModel(loginUser)
             loginViewModel.loginUser.observe(viewLifecycleOwner, Observer { user ->
                 Log.i("====>LoginFragment", "User data: " + user)
                 // saving user data in shared preferences for later use

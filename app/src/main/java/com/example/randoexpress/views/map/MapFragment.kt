@@ -66,7 +66,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             Log.i("====>Home fragment", "JWT:" + jwt)
             randoListViewModel = ViewModelProvider(this).get(RandoListViewModel::class.java)
             randoListViewModel.jwt = jwt
-            //randoListViewModel = RandoListViewModel(jwt)
             randoListViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
                 // iterating through list of Rando
                 // and placing marker for each

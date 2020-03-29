@@ -65,7 +65,6 @@ class UpcomingAndPastRandoListFragment : Fragment() {
         randoListViewModel = ViewModelProvider(this).get(RandoListViewModel::class.java)
         randoListViewModel.jwt = jwt
         randoListViewModel.id = userId
-        //randoListViewModel = RandoListViewModel(jwt, userId)
         if(selectedTab == UPCOMING_RANDO_TAB) {
             randoListViewModel.getFutureRandoList.observe(viewLifecycleOwner, Observer { list ->
                 val adapter = RandoListAdapter(
