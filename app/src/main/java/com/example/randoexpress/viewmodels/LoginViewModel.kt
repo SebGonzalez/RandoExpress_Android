@@ -7,12 +7,15 @@ import com.example.randoexpress.model.Model
 import com.example.randoexpress.network.RandoRepository
 import kotlinx.coroutines.Dispatchers
 
-class LoginViewModel(user: Model.LoginUser): ViewModel(){
-    val repository: RandoRepository = RandoRepository()
+class LoginViewModel(): ViewModel(){
+
+    private val repository: RandoRepository = RandoRepository()
+    var user: Model.LoginUser = Model.LoginUser()
 
     val loginUser = liveData(Dispatchers.IO) {
+        Log.i("==VM==>LoginViewModel", "Login data: "+user)
         val loginData = repository.loginUser(user)
-        Log.i("====>LoginViewModel", "Login message: "+loginData)
+        Log.i("==VM==>LoginViewModel", "Login message: "+loginData)
         emit(loginData)
     }
 }

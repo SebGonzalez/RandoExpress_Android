@@ -6,18 +6,22 @@ import androidx.lifecycle.liveData
 import com.example.randoexpress.network.RandoRepository
 import kotlinx.coroutines.Dispatchers
 
-class SubscriptionViewModel(jwt: String, id: Int, email: String): ViewModel() {
-    val repository: RandoRepository = RandoRepository()
+class SubscriptionViewModel(): ViewModel() {
+
+    private val repository: RandoRepository = RandoRepository()
+    var jwt: String = ""
+    var id: Int = 0
+    var email: String = ""
 
     val subscribe = liveData(Dispatchers.IO) {
         val message = repository.subscribe(jwt, id, email)
-        Log.i("====>AuthViewModel", "Signup message: "+message)
+        Log.i("==VM==>subscribeVM", "Signup message: "+message)
         emit(message)
     }
 
     val unsubscribe = liveData(Dispatchers.IO) {
         val message = repository.unsubscribe(jwt, id, email)
-        Log.i("====>AuthViewModel", "Signup message: "+message)
+        Log.i("==VM==>unsubscribeVM", "Signup message: "+message)
         emit(message)
     }
 

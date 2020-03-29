@@ -11,13 +11,17 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randoexpress.R
 import com.example.randoexpress.RandoListAdapter
+import com.example.randoexpress.viewmodels.AuthViewModel
 import com.example.randoexpress.viewmodels.RandoListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment() {
+
+    private lateinit var randoListViewModel: RandoListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,8 +63,10 @@ class HomeFragment : Fragment() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
         val jwt: String = sharedPref.getString("jwt", "none") as String
         Log.i("====>Home fragment", "JWT:"+jwt)
-        val randoViewModel = RandoListViewModel(jwt)
-        randoViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
+        randoListViewModel = ViewModelProvider(this).get(RandoListViewModel::class.java)
+        randoListViewModel.jwt = jwt
+        //randoListViewModel = RandoListViewModel(jwt)
+        randoListViewModel.getRandoList.observe(viewLifecycleOwner, Observer { list ->
             Log.i("==>Home fragment result", "List:"+list)
             val adapter = RandoListAdapter(
                 list,

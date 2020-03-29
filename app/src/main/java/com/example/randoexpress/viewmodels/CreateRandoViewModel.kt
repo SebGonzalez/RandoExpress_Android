@@ -7,12 +7,15 @@ import com.example.randoexpress.model.Model
 import com.example.randoexpress.network.RandoRepository
 import kotlinx.coroutines.Dispatchers
 
-class CreateRandoViewModel(jwt: String, rando: Model.Rando): ViewModel()  {
-    val repository: RandoRepository = RandoRepository()
+class CreateRandoViewModel(): ViewModel()  {
+
+    private val repository: RandoRepository = RandoRepository()
+    var jwt: String =""
+    var rando: Model.Rando = Model.Rando()
 
     val addRando = liveData(Dispatchers.IO) {
         val message = repository.addRando(jwt, rando)
-        Log.i("====>CreateRando", "ADDING NEW HIKE")
+        Log.i("==VM==>CreateRandoVM", "ADDING NEW HIKE")
         emit(message)
     }
 }

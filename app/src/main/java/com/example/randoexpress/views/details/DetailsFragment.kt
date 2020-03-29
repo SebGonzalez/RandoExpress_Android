@@ -11,9 +11,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.randoexpress.R
 import com.example.randoexpress.model.Model
@@ -35,9 +34,10 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var sharedPref: SharedPreferences
     private lateinit var jwt: String
     private lateinit var email: String
+    private lateinit var subscriptionViewModel: SubscriptionViewModel
+    private lateinit var randoListViewModel: RandoListViewModel
     private var randoId: Int = 0
     private var randoOrigin: Int = 0
-
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -66,32 +66,65 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bundle = arguments
-        randoId = bundle!!.getInt("randoId")
-        sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-        randoOrigin = bundle.getInt("randoOrigin")
-        jwt = sharedPref.getString("jwt", "none") as String
-        email = sharedPref.getString("email", "none") as String
-        val randoViewModel = RandoListViewModel(jwt, randoId)
-        randoViewModel.getRando.observe(viewLifecycleOwner, Observer { r ->
+        getBundleData()
+        getSharedPref()
+        setupSubscriptionViewModel()
+        //subscriptionViewModel = SubscriptionViewModel(jwt, randoId, email)
+        setupRandoListViewModel()
+        //randoViewModel = RandoListViewModel(jwt, randoId)
+        randoListViewModel.getRando.observe(viewLifecycleOwner, Observer { r ->
             rando = r
-            Log.i("===>Details", "Rando="+r)
+            Log.i("===>Details", "Rando=" + r)
             bindData(view)
             setupAttendeesList(view)
             setAttendeesOnClickListener(view)
-            adaptViewToOrigin(view)
+            adaptActionButtonToOrigin(view)
             placeMarker()
         })
+    }
+
+    /**
+     * Creating ViewModel and passing data needed to make get/post requests
+     */
+    private fun setupSubscriptionViewModel(){
+        subscriptionViewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
+        subscriptionViewModel.jwt = jwt
+        subscriptionViewModel.id = randoId
+        subscriptionViewModel.email = email
+    }
+
+    /**
+     * Creating ViewModel and passing data needed to make get/post requests
+     */
+    private fun setupRandoListViewModel(){
+        randoListViewModel = ViewModelProvider(this).get(RandoListViewModel::class.java)
+        randoListViewModel.jwt = jwt
+        randoListViewModel.id = randoId
+    }
+
+    private fun getBundleData(){
+        val bundle = arguments
+        randoId = bundle!!.getInt("randoId")
+        randoOrigin = bundle.getInt("randoOrigin")
+    }
+
+    /**
+     * Fetch shared pref data
+     */
+    private fun getSharedPref() {
+        sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        jwt = sharedPref.getString("jwt", "none") as String
+        email = sharedPref.getString("email", "none") as String
     }
 
     /**
      * Adapts join/leave button according to the context of display
      * @param fragment root view
      */
-    private fun adaptViewToOrigin(view: View){
-        if(randoOrigin == R.id.action_navigation_home_to_detailsFragment){
+    private fun adaptActionButtonToOrigin(view: View) {
+        if (randoOrigin == R.id.action_navigation_home_to_detailsFragment) {
             setJoinOnClickListener(view)
-        } else if(randoOrigin == R.id.action_navigation_dashboard_to_detailsFragment){
+        } else if (randoOrigin == R.id.action_navigation_dashboard_to_detailsFragment) {
             setLeaveOnClickListener(view)
         }
     }
@@ -157,9 +190,8 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
      * Join the current hike logic
      * @param fragment root view
      */
-    private fun setJoinOnClickListener(view: View){
+    private fun setJoinOnClickListener(view: View) {
         val joinButton: Button = view.findViewById(R.id.rando_details_join_button)
-        val subscriptionViewModel = SubscriptionViewModel(jwt, randoId, email)
         joinButton.setOnClickListener {
             subscriptionViewModel.subscribe.observe(viewLifecycleOwner, Observer { message ->
                 Log.i("====>Details", "Subscribe")
@@ -174,10 +206,9 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
      * Leave the current hike logic
      * @param fragment root view
      */
-    private fun setLeaveOnClickListener(view: View){
+    private fun setLeaveOnClickListener(view: View) {
         val joinButton: Button = view.findViewById(R.id.rando_details_join_button)
         joinButton.text = "Leave"
-        val subscriptionViewModel = SubscriptionViewModel(jwt, randoId, email)
         joinButton.setOnClickListener {
             subscriptionViewModel.unsubscribe.observe(viewLifecycleOwner, Observer { message ->
                 Log.i("====>Details", "Unsubscription")

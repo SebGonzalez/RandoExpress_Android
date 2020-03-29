@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randoexpress.R
 import com.example.randoexpress.RandoListAdapter
@@ -19,6 +19,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  * Dashboard tab fragment
  */
 class UpcomingAndPastRandoListFragment : Fragment() {
+
+    private lateinit var randoListViewModel: RandoListViewModel
 
     companion object {
         const val UPCOMING_RANDO_TAB = 1
@@ -60,9 +62,12 @@ class UpcomingAndPastRandoListFragment : Fragment() {
         val userId: Int = sharedPref.getInt("id", 0)
         Log.i("====>Dashboard", "JWT:"+jwt)
         Log.i("====>Dashboard", "User ID:"+userId)
-        val randoViewModel = RandoListViewModel(jwt, userId)
+        randoListViewModel = ViewModelProvider(this).get(RandoListViewModel::class.java)
+        randoListViewModel.jwt = jwt
+        randoListViewModel.id = userId
+        //randoListViewModel = RandoListViewModel(jwt, userId)
         if(selectedTab == UPCOMING_RANDO_TAB) {
-            randoViewModel.getFutureRandoList.observe(viewLifecycleOwner, Observer { list ->
+            randoListViewModel.getFutureRandoList.observe(viewLifecycleOwner, Observer { list ->
                 val adapter = RandoListAdapter(
                     list,
                     R.id.action_navigation_dashboard_to_detailsFragment
@@ -70,7 +75,7 @@ class UpcomingAndPastRandoListFragment : Fragment() {
                 recyclerView.adapter = adapter
             })
         } else if(selectedTab == PAST_RANDO_TAB){
-            randoViewModel.getPastRandoList.observe(viewLifecycleOwner, Observer { list ->
+            randoListViewModel.getPastRandoList.observe(viewLifecycleOwner, Observer { list ->
                 val adapter = RandoListAdapter(
                     list,
                     R.id.action_navigation_dashboard_to_detailsFragment
