@@ -11,6 +11,7 @@ Built using Navigation Architecture Component, MVVM, Retrofit, Coroutines.
 - catch network errors
 - current user location on map
 - open hike details after clicking on a map marker
+- unit + ui tests
 
 ### Screenshots
 <br/>
